@@ -160,6 +160,13 @@ describe('software', () => {
       }
     }
   })
+
+  it('keeps snapshots free of client-identifying specifics', () => {
+    const text = snapshots.map((s) => `${s.title} ${s.body} ${s.metric}`).join(' ').toLowerCase()
+    for (const phrase of ['five thousand', '5 000', '5,000', 'six southern african', 'ussd', 'agricultural']) {
+      expect(text, `snapshot contains an identifying specific: "${phrase}"`).not.toContain(phrase)
+    }
+  })
 })
 
 describe('careers', () => {

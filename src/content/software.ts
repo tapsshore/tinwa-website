@@ -42,12 +42,12 @@ export const snapshots = [
   {
     metric: '20,000+ applications a day',
     title: 'Credit decisioning at retail scale',
-    body: 'A customer onboarding and credit decisioning platform serving more than five thousand retail stores across six southern African countries, integrating four credit bureaux and a machine-learning decisioning engine on a serverless architecture.',
+    body: 'A customer onboarding and credit decisioning platform serving a large retail footprint across southern Africa, integrating multiple credit bureaux and a machine-learning decisioning engine on a serverless architecture.',
   },
   {
     metric: 'Millions of subscribers',
     title: 'Telecoms transaction processing',
-    body: 'Event-driven services handling USSD and agricultural-services traffic for a national mobile network, built on Spring Boot and Kafka for high concurrency across a distributed estate.',
+    body: 'Event-driven services handling high-concurrency subscriber transactions for a mobile network operator, built on Spring Boot and Kafka for throughput across a distributed estate.',
   },
   {
     metric: 'Zero-downtime releases',
