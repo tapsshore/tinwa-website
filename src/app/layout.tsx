@@ -1,6 +1,9 @@
 import type { Metadata } from 'next'
 import { Inter, Inter_Tight, JetBrains_Mono } from 'next/font/google'
 import './globals.css'
+import { Nav } from '@/components/layout/Nav'
+import { Footer } from '@/components/layout/Footer'
+import { SkipLink } from '@/components/layout/SkipLink'
 
 const interTight = Inter_Tight({
   subsets: ['latin'],
@@ -32,7 +35,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
-      <body>{children}</body>
+      <body>
+        <SkipLink />
+        <Nav />
+        <main id="main-content">{children}</main>
+        <Footer />
+      </body>
     </html>
   )
 }
