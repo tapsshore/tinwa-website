@@ -24,6 +24,14 @@ export const whyPoints: Feature[] = [
   },
 ]
 
+export const ctaBand = {
+  label: 'Next step',
+  title: 'Tell us what you are short of.',
+  body: 'A developer, a delivery team, or a second opinion on an architecture. We will tell you honestly whether we are the right fit.',
+  primaryCta: { label: 'Hire a developer', href: '/contact' } satisfies Cta,
+  secondaryCta: { label: 'Start a project', href: '/contact' } satisfies Cta,
+}
+
 export const pillars = [
   {
     label: 'Talent',

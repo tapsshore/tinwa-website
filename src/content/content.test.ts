@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest'
 import { primaryNav, footerNav, routes } from './nav'
 import { pageSeo } from './seo'
-import { hero, whyPoints, pillars } from './home'
+import { hero, whyPoints, pillars, ctaBand } from './home'
 import { processSteps } from './process'
 import { experienceEntries, EXPERIENCE_HEADING, EXPERIENCE_FOOTNOTE } from './experience'
 import { engagementModels, vetting, skillGroups, availability } from './talent'
@@ -78,6 +78,12 @@ describe('home', () => {
     expect(pillars).toHaveLength(2)
     expect(pillars[0].href).toBe('/talent')
     expect(pillars[1].href).toBe('/software')
+  })
+
+  it('has a CTA band with two actions', () => {
+    expect(ctaBand.title.trim().length).toBeGreaterThan(0)
+    expect(ctaBand.primaryCta.href).toBe('/contact')
+    expect(ctaBand.secondaryCta.href).toBe('/contact')
   })
 })
 
