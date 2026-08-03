@@ -63,6 +63,7 @@ Domain credibility comes from the founder's record: 11+ years across digital ban
 
 ### 4.1 Stack
 
+- Node 20 LTS · npm (matches the local toolchain: node v20.19.2, npm 10.8.2)
 - Next.js 15 (App Router) · TypeScript (strict) · Tailwind CSS v4
 - `next/font` for self-hosted Inter Tight, Inter, JetBrains Mono
 - Resend for transactional email
@@ -172,6 +173,8 @@ Founded 26 March 2019. The associate-network model stated plainly. Founder profi
 
 Who we're looking for (senior, 5+ years, JVM / React / cloud). What working through TINWA means. Form: name, email, LinkedIn or CV URL, primary stack, years of experience, location. **No file uploads** — a URL field avoids storage cost, file validation and POPIA retention obligations entirely.
 
+Carries the same POPIA processing notice as the contact form, linking to `/privacy` — this form collects personal information too.
+
 ### 5.7 Contact (`/contact`)
 
 Form: name, company, work email, phone (optional), enquiry type (*Hire a developer* / *Start a project* / *Other*), message. Beside it a details panel: phone, email, published address, registration number. Short POPIA processing notice under the submit button, linking to `/privacy`.
@@ -204,7 +207,9 @@ Self-hosted via `next/font` — no external font request, no layout shift.
 
 ### 6.3 Logo
 
-Wordmark only: `TINWA` in Inter Tight 700, letter-spacing 0.22em. No icon mark. Renders as text in the nav (not an image), so it stays crisp and themeable. A standalone SVG version is generated for the OG image and favicon.
+Wordmark only: `TINWA` in Inter Tight 700, letter-spacing 0.22em. No icon mark. Renders as text in the nav (not an image), so it stays crisp and themeable.
+
+Two derived assets, since a wordmark alone doesn't work at 32px: the OG image draws the wordmark on ink via `opengraph-image.tsx`, and the favicon is a hand-authored `icon.svg` — a lime `#C9F24D` square with a near-black `T` — which is the only place a mark exists.
 
 ---
 
