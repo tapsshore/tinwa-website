@@ -28,7 +28,7 @@ describe('about', () => {
 describe('privacy', () => {
   it('covers the POPIA disclosures a processing notice needs', () => {
     const headings = privacySections.map((s) => s.heading.toLowerCase()).join(' ')
-    for (const topic of ['collect', 'use', 'retain', 'share', 'rights']) {
+    for (const topic of ['collect', 'use', 'retain', 'share', 'processed', 'rights']) {
       expect(headings, `privacy notice is missing a section about "${topic}"`).toContain(topic)
     }
   })

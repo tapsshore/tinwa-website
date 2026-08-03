@@ -31,6 +31,13 @@ export const privacySections: { heading: string; body: string[] }[] = [
     ],
   },
   {
+    heading: 'Where your information is processed',
+    body: [
+      'The providers we use to deliver this website and its email — Vercel and Resend — operate infrastructure outside South Africa, so your information may be processed in another country.',
+      'Section 72 of POPIA permits this where the recipient is subject to laws or binding agreements that uphold principles of lawful processing comparable to POPIA. We only use providers that commit to such terms contractually.',
+    ],
+  },
+  {
     heading: 'How long we retain it',
     body: [
       'Enquiries are retained for up to 24 months from your last contact with us, so we can pick up a conversation where it left off.',
