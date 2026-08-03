@@ -31,10 +31,8 @@ export const metadata: Metadata = {
     type: 'website',
     siteName: company.shortName,
     locale: 'en_ZA',
-    url: company.siteUrl,
   },
   twitter: { card: 'summary_large_image' },
-  alternates: { canonical: '/' },
 }
 
 // Runs before first paint so the stored theme never flashes.

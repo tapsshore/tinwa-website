@@ -11,6 +11,7 @@ import { pageSeo } from '@/content/seo'
 export const metadata: Metadata = {
   title: pageSeo['/careers'].title,
   description: pageSeo['/careers'].description,
+  alternates: { canonical: '/careers' },
 }
 
 export default function CareersPage() {

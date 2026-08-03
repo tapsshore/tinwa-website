@@ -25,7 +25,7 @@ export function Footer() {
         </div>
 
         <div className="flex flex-col gap-3">
-          <span className="label-mono text-muted">Registered office</span>
+          <span className="label-mono text-muted">Address</span>
           <address className="text-sm not-italic leading-relaxed text-muted">
             {formatAddress().map((line) => (
               <span key={line} className="block">
@@ -51,7 +51,7 @@ export function Footer() {
 
       <Container className="flex flex-col gap-2 border-t border-border py-6 text-xs text-muted sm:flex-row sm:items-center sm:justify-between">
         <p>
-          {company.legalName} — Registration {company.registrationNumber} — VAT/Tax{' '}
+          {company.legalName} — Registration {company.registrationNumber} — Tax{' '}
           {company.taxNumber}
         </p>
         <p>

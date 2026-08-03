@@ -49,8 +49,12 @@ body {
   text-transform: uppercase;
 }
 
+/* The accent (lime on both themes) fails WCAG 2.2 SC 1.4.11's 3:1 contrast
+   requirement for focus indicators against the light canvas (~1.22:1), so
+   the focus ring uses --ink instead: off-white on dark, near-black on
+   light — both comfortably above 3:1 against their respective canvases. */
 :focus-visible {
-  outline: 2px solid var(--accent);
+  outline: 2px solid var(--ink);
   outline-offset: 2px;
 }
 

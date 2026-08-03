@@ -12,8 +12,10 @@ export async function POST(request: Request) {
   }
 
   // Spam gets a 200 with no mail sent. Returning an error would just tell the
-  // bot which signal caught it.
+  // bot which signal caught it. Log the discarded payload so a false positive
+  // (a real applicant) is still recoverable.
   if (isLikelySpam(payload)) {
+    console.warn('[careers] discarded as spam', JSON.stringify(payload))
     return NextResponse.json({ ok: true })
   }
 

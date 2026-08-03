@@ -20,7 +20,7 @@ export const story: Feature[] = [
 export const founder = {
   name: 'Tapiwanashe Shoshore',
   role: 'Founder and director',
-  body: 'Eleven years building and running enterprise systems across digital banking, telecommunications, retail credit and sports betting — from event-driven core banking services on Kotlin and Kafka, to a serverless credit decisioning platform processing tens of thousands of applications a day, to USSD and agricultural services for a national mobile network. Hands-on with architecture and code, and the person who reviews every engineer before they reach a client.',
+  body: 'Eleven years building and running enterprise systems across digital banking, telecommunications, retail credit and sports betting — from event-driven core banking services on Kotlin and Kafka, to a serverless credit decisioning platform processing tens of thousands of applications a day, to high-concurrency subscriber services for a mobile network operator. Hands-on with architecture and code, and the person who reviews every engineer before they reach a client.',
   credentials: [
     'MSc Information Systems Management, Midlands State University',
     'BSc (Hons) Information Systems, Midlands State University',

@@ -26,3 +26,13 @@ test('the stored theme is applied before first paint', async ({ page }) => {
   const themeAtLoad = await page.evaluate(() => document.documentElement.getAttribute('data-theme'))
   expect(themeAtLoad).toBe('light')
 })
+
+test.describe('with a light system preference and no stored theme', () => {
+  test.use({ colorScheme: 'light' })
+
+  test('a fresh visit lands in light mode', async ({ page }) => {
+    await page.goto('/')
+
+    await expect(page.locator('html')).toHaveAttribute('data-theme', 'light')
+  })
+})

@@ -7,7 +7,7 @@ import { z } from 'zod'
  */
 
 export const HONEYPOT_FIELD = 'company_website'
-export const MIN_SUBMIT_MS = 2000
+export const MIN_SUBMIT_MS = 1200
 
 export const contactSchema = z.object({
   name: z.string().trim().min(2, 'Enter your name').max(100, 'Name is too long'),

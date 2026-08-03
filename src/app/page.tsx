@@ -13,6 +13,7 @@ import { pageSeo } from '@/content/seo'
 export const metadata: Metadata = {
   title: pageSeo['/'].title,
   description: pageSeo['/'].description,
+  alternates: { canonical: '/' },
 }
 
 export default function HomePage() {

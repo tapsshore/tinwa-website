@@ -12,6 +12,7 @@ import { pageSeo } from '@/content/seo'
 export const metadata: Metadata = {
   title: pageSeo['/about'].title,
   description: pageSeo['/about'].description,
+  alternates: { canonical: '/about' },
 }
 
 export default function AboutPage() {
@@ -27,7 +28,11 @@ export default function AboutPage() {
         </Container>
       </section>
 
-      <Section label="02 — How we operate" className="border-t border-border">
+      <Section
+        label="02 — How we operate"
+        title="How we operate"
+        className="border-t border-border"
+      >
         <FeatureGrid features={story} columns={2} />
       </Section>
 

@@ -12,6 +12,7 @@ import { pageSeo } from '@/content/seo'
 export const metadata: Metadata = {
   title: pageSeo['/talent'].title,
   description: pageSeo['/talent'].description,
+  alternates: { canonical: '/talent' },
 }
 
 export default function TalentPage() {

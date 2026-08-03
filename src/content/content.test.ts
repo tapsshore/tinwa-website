@@ -7,6 +7,7 @@ import { experienceEntries, EXPERIENCE_HEADING, EXPERIENCE_FOOTNOTE } from './ex
 import { engagementModels, vetting, skillGroups, availability } from './talent'
 import { capabilities, domains, snapshots } from './software'
 import { lookingFor, whatWeOffer, careersIntro } from './careers'
+import { founder } from './about'
 import type { Feature } from './types'
 
 function expectFeatures(features: readonly Feature[], min: number) {
@@ -168,9 +169,13 @@ describe('software', () => {
   })
 
   it('keeps snapshots free of client-identifying specifics', () => {
-    const text = snapshots.map((s) => `${s.title} ${s.body} ${s.metric}`).join(' ').toLowerCase()
+    // Also covers founder.body (src/content/about.ts) — the same ruling
+    // applies there, and this is the only guard positioned to see it.
+    const text = [...snapshots.map((s) => `${s.title} ${s.body} ${s.metric}`), founder.body]
+      .join(' ')
+      .toLowerCase()
     for (const phrase of ['five thousand', '5 000', '5,000', 'six southern african', 'ussd', 'agricultural']) {
-      expect(text, `snapshot contains an identifying specific: "${phrase}"`).not.toContain(phrase)
+      expect(text, `content contains an identifying specific: "${phrase}"`).not.toContain(phrase)
     }
   })
 })

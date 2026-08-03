@@ -97,6 +97,8 @@ export function ContactForm() {
           tabIndex={-1}
           aria-hidden="true"
           autoComplete="off"
+          data-1p-ignore="true"
+          data-lpignore="true"
         />
       </div>
 
