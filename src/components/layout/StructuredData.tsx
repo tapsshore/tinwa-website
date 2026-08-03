@@ -16,7 +16,7 @@ export function StructuredData() {
     email: company.email,
     foundingDate: company.registrationDate,
     identifier: company.registrationNumber,
-    vatID: company.taxNumber,
+    taxID: company.taxNumber,
     address: {
       '@type': 'PostalAddress',
       streetAddress: `${company.address.line1}, ${company.address.line2}`,
