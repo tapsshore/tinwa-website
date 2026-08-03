@@ -4,6 +4,9 @@ import './globals.css'
 import { Nav } from '@/components/layout/Nav'
 import { Footer } from '@/components/layout/Footer'
 import { SkipLink } from '@/components/layout/SkipLink'
+import { StructuredData } from '@/components/layout/StructuredData'
+import { company } from '@/content/company'
+import { pageSeo } from '@/content/seo'
 
 const interTight = Inter_Tight({
   subsets: ['latin'],
@@ -18,8 +21,20 @@ const jetbrainsMono = JetBrains_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'TINWA',
-  description: 'Senior engineers, embedded. Software, delivered.',
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? company.siteUrl),
+  title: {
+    default: pageSeo['/'].title,
+    template: `%s`,
+  },
+  description: pageSeo['/'].description,
+  openGraph: {
+    type: 'website',
+    siteName: company.shortName,
+    locale: 'en_ZA',
+    url: company.siteUrl,
+  },
+  twitter: { card: 'summary_large_image' },
+  alternates: { canonical: '/' },
 }
 
 // Runs before first paint so the stored theme never flashes.
@@ -34,6 +49,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     >
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+        <StructuredData />
       </head>
       <body>
         <SkipLink />
