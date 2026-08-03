@@ -8,6 +8,7 @@ import { CtaBand } from './CtaBand'
 import { hero, ctaBand } from '@/content/home'
 import { processSteps } from '@/content/process'
 import { company } from '@/content/company'
+import { formatDate } from '@/lib/formatDate'
 
 describe('Hero', () => {
   it('renders both halves of the headline in a single h1', () => {
@@ -61,6 +62,14 @@ describe('CredentialsBlock', () => {
     expect(screen.getByText(company.registrationNumber)).toBeInTheDocument()
     expect(screen.getByText(company.taxNumber)).toBeInTheDocument()
     expect(screen.getByText(new RegExp(`Level ${company.bbbee.level}`))).toBeInTheDocument()
+  })
+
+  it('formats registration and B-BBEE dates from the source constants, not literals', () => {
+    render(<CredentialsBlock />)
+    expect(screen.getByText(formatDate(company.registrationDate))).toBeInTheDocument()
+    expect(
+      screen.getByText(new RegExp(formatDate(company.bbbee.validUntil))),
+    ).toBeInTheDocument()
   })
 })
 

@@ -1,4 +1,5 @@
 import { company, formatAddress } from '@/content/company'
+import { formatDate } from '@/lib/formatDate'
 
 export function CredentialsBlock() {
   const rows: { label: string; value: React.ReactNode }[] = [
@@ -6,11 +7,11 @@ export function CredentialsBlock() {
     { label: 'Registration number', value: company.registrationNumber },
     { label: 'Tax number', value: company.taxNumber },
     { label: 'Enterprise type', value: company.enterpriseType },
-    { label: 'Registered', value: '26 March 2019' },
+    { label: 'Registered', value: formatDate(company.registrationDate) },
     { label: 'Director', value: company.director },
     {
       label: 'B-BBEE',
-      value: `${company.bbbee.status}, Level ${company.bbbee.level} contributor — ${company.bbbee.recognition} procurement recognition, valid to 16 July 2027`,
+      value: `${company.bbbee.status}, Level ${company.bbbee.level} contributor — ${company.bbbee.recognition} procurement recognition, valid to ${formatDate(company.bbbee.validUntil)}`,
     },
     {
       label: 'Address',
