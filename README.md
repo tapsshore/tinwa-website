@@ -1,36 +1,77 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# TINWA website
 
-## Getting Started
+Marketing website for TINWA (Pty) Ltd — a South African software consultancy.
 
-First, run the development server:
+## Stack
+
+Next.js 15 (App Router) · TypeScript · Tailwind CSS v4 · Zod · Resend · Vitest · Playwright · Vercel
+
+## Getting started
 
 ```bash
+npm install
+cp .env.example .env.local   # then fill in the values
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Environment variables
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Variable | Purpose |
+|---|---|
+| `RESEND_API_KEY` | Sends contact and careers submissions |
+| `CONTACT_TO_EMAIL` | Inbox that receives submissions |
+| `NEXT_PUBLIC_SITE_URL` | Canonical URL for metadata, sitemap and Open Graph |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Scripts
 
-## Learn More
+| Command | Does |
+|---|---|
+| `npm run dev` | Development server |
+| `npm run build` | Production build |
+| `npm test` | Unit tests (Vitest) |
+| `npm run test:e2e` | End-to-end tests (Playwright) |
+| `npm run typecheck` | TypeScript, no emit |
+| `npm run lint` | ESLint |
+| `npm run check:env` | Fails if a required environment variable is missing |
 
-To learn more about Next.js, take a look at the following resources:
+`npm run test:e2e` builds and boots a production server itself (see `playwright.config.ts`'s
+`webServer` block) — there is no need to have `npm run dev` running first.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## How the code is organised
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Three rules keep this maintainable:
 
-## Deploy on Vercel
+1. **Components contain no copy.** Every user-visible string lives in `src/content/` and arrives as props.
+2. **Content modules contain no markup.** They export typed plain data.
+3. **`src/lib/` never imports from `src/components/`.** Validation, env and mail work without React.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Changing company details
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Every company fact — registration number, address, phone, email, B-BBEE level — lives in
+`src/content/company.ts`. Change it there and it updates the footer, the About page, the Contact
+page and the structured data at once. `src/content/company.test.ts` asserts these values, so a
+deliberate change means updating the test too.
+
+## Adding a logo to the experience wall
+
+1. Confirm the company publishes a brand or press kit whose terms permit this use.
+2. Save the mark to `public/logos/<slug>.svg`, matching the `slug` in `src/content/experience.ts`.
+3. Add an entry to `src/content/logoManifest.ts` with the asset's intrinsic width and height.
+
+Any entry without a manifest entry renders as a text chip. That is the intended fallback — do not
+recreate or approximate a mark that is not publicly available.
+
+## Deployment
+
+Not yet deployed. Once a Vercel project is linked and `main` is connected to it, pushes to `main`
+deploy to production and pull requests get preview URLs.
+
+## Open items
+
+1. **Register `tinwa.co.za`** and provision the `hello@` mailbox.
+2. **Create a Resend account**, verify the sending domain, and supply `RESEND_API_KEY`.
+3. **Confirm the B-BBEE level.** The affidavit ticks Level 4 but its bullets declare 100% black
+   ownership, which would be Level 1 — a 35-point difference in procurement recognition. The site
+   publishes Level 4; changing it is one line in `company.ts` plus its test.
+4. **Review the experience wall** once logos are sourced, and confirm each mark that appears.
+5. **Link and deploy to Vercel**, then attach the custom domain once it is registered.
