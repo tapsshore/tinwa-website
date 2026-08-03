@@ -14,7 +14,7 @@ Every task's requirements implicitly include this section.
 
 - **Node 20 LTS, npm.** Local toolchain is node v20.19.2, npm 10.8.2.
 - **TypeScript strict mode on.** No `any`, no non-null assertions on values that can genuinely be absent.
-- **Components contain no copy.** Every user-visible string arrives via props from a module in `src/content/`. Violating this fails review.
+- **Components contain no copy.** Every user-visible string rendered by a file under `src/components/` arrives via props. Violating this fails review. **Scope note:** this rule binds `src/components/` only. Route files under `src/app/` may hold their own page headings and intro prose inline — they are the composition layer, not reusable units. Long-form and repeated content (privacy sections, service lists, company facts) still lives in `src/content/`.
 - **Content modules contain no markup.** They export typed plain data only — no JSX, no HTML strings.
 - **`src/lib/` never imports from `src/components/`.** Validation, env and mail must be usable from route handlers with no React in the module graph.
 - **Colour tokens.** Dark: bg `#0B0B0C`, surface `#141416`, border `#26262A`, muted `#9A9AA1`, ink `#EDEDE9`. Light: bg `#FAFAF8`, surface `#FFFFFF`, border `#E3E3DE`, muted `#5C5C63`, ink `#101012`. Accent both themes: lime `#C9F24D`.
