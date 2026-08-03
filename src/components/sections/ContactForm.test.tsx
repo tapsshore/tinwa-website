@@ -97,6 +97,28 @@ describe('ContactForm', () => {
     expect(await screen.findByRole('alert')).toHaveTextContent(company.email)
   })
 
+  it('shows the contact details when a 400 carries no errors object', async () => {
+    vi.stubGlobal('fetch', mockFetch(400, { ok: false }))
+
+    const user = userEvent.setup({ advanceTimers: vi.advanceTimersByTime })
+    render(<ContactForm />)
+    await fillValidEnquiry(user)
+    await user.click(screen.getByRole('button', { name: /send/i }))
+
+    expect(await screen.findByRole('alert')).toHaveTextContent(company.email)
+  })
+
+  it('shows the contact details when a 400 carries an empty errors object', async () => {
+    vi.stubGlobal('fetch', mockFetch(400, { ok: false, errors: {} }))
+
+    const user = userEvent.setup({ advanceTimers: vi.advanceTimersByTime })
+    render(<ContactForm />)
+    await fillValidEnquiry(user)
+    await user.click(screen.getByRole('button', { name: /send/i }))
+
+    expect(await screen.findByRole('alert')).toHaveTextContent(company.email)
+  })
+
   it('keeps the honeypot out of the accessibility tree', () => {
     render(<ContactForm />)
     const honeypot = document.querySelector('input[name="company_website"]')

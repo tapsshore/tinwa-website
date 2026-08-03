@@ -25,8 +25,21 @@ export function useFormSubmit(endpoint: string) {
       })
 
       if (response.status === 400) {
-        const body = (await response.json()) as { errors?: Record<string, string> }
-        setErrors(body.errors ?? {})
+        const body = (await response.json()) as { errors?: unknown }
+        const errors =
+          typeof body.errors === 'object' && body.errors !== null
+            ? (body.errors as Record<string, string>)
+            : {}
+
+        // A 400 is only actionable for the visitor if it names fields they can
+        // fix. Anything else — rate limiting, an unexpected body shape, a bug —
+        // must surface the fallback rather than resolve to a silent no-op.
+        if (Object.keys(errors).length === 0) {
+          setState('error')
+          return
+        }
+
+        setErrors(errors)
         setState('idle')
         return
       }
