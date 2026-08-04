@@ -18,8 +18,17 @@ describe('sitemap', () => {
   })
 
   it('ranks the home page highest', () => {
-    const home = sitemap().find((entry) => entry.url.replace(/\/$/, '').endsWith(company.domain))
+    const baseUrl = process.env.NEXT_PUBLIC_SITE_URL ?? company.siteUrl
+    const entries = sitemap()
+
+    const home = entries.find((entry) => entry.url === baseUrl)
+    expect(home, `no sitemap entry matched the base URL ${baseUrl}`).toBeDefined()
     expect(home?.priority).toBe(1)
+
+    // Every other route ranks below the home page.
+    for (const entry of entries.filter((e) => e.url !== baseUrl)) {
+      expect(entry.priority).toBeLessThan(1)
+    }
   })
 })
 
